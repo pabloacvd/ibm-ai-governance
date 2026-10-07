@@ -1,0 +1,71 @@
+.architecture-canvas-wrapper {
+  position: relative;
+  background: #ffffff;
+  border: 1px solid var(--cds-border-subtle-01, #e0e0e0);
+
+  &:focus-visible {
+    outline: 2px solid var(--cds-focus, #0f62fe);
+    outline-offset: -2px;
+  }
+}
+
+.architecture-loading-overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: #ffffff;
+}
+
+.architecture-canvas {
+  width: 100%;
+  height: clamp(320px, 50vh, 560px);
+}
+
+.architecture-controls {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border-bottom: 1px solid var(--cds-border-subtle-01, #e0e0e0);
+  align-items: center;
+}
+
+.architecture-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 0.5rem 1rem;
+  border-top: 1px solid var(--cds-border-subtle-01, #e0e0e0);
+  font-size: 0.75rem;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.legend-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  display: inline-block;
+
+  &.legend-dot-active    { background-color: #0f62fe; }
+  &.legend-dot-blocked   { background-color: #da1e28; }
+  &.legend-dot-monitored { background-color: #009d9a; }
+  &.legend-dot-approved  { background-color: #198038; }
+  &.legend-dot-warning   { background-color: #ff832b; }
+  &.legend-dot-inactive  { background-color: #c6c6c6; }
+}
+
+// Edge animation (JS-driven via lineDashOffset; CSS keyframe for overlay elements)
+@keyframes dash-flow {
+  to { stroke-dashoffset: -20; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .edge-animated-overlay {
+    animation: none !important;
+  }
+}
